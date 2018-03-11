@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/74265/myApp/public/hellocanvas.html",
+            "url": "file:///C:/Users/74265/myApp/public/HorseRoute.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
