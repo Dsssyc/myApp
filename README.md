@@ -16,4 +16,4 @@ https://dsssyc.github.io/myApp/public/HorseRoute.html
 
 bestwork.html：
 
-https://dsssyc.github.io/myApp/public/bestwork.html：
+https://dsssyc.github.io/myApp/public/bestwork.html
