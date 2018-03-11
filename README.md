@@ -10,6 +10,6 @@ hellocanvas.html:
 
 https://dsssyc.github.io/myApp/public/hellocanvas.html
 
-HouseRoute.html:
+HorseRoute.html:
 
-https://dsssyc.github.io/myApp/public/HouseRoute.html
+https://dsssyc.github.io/myApp/public/HorseRoute.html
