@@ -9,3 +9,7 @@ https://dsssyc.github.io/myApp/public/helloworld.html
 hellocanvas.html:
 
 https://dsssyc.github.io/myApp/public/hellocanvas.html
+
+HorseRoute.html:
+
+https://dsssyc.github.io/myApp/public/HorseRoute.html
