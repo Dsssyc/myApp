@@ -1,0 +1,465 @@
+<html>    
+    <head>    
+        <title>名称编码</title>    
+    </head>    
+        <body align='center'>   
+            <br>InputFile            
+            <input id="fileInput" type="file" onchange="processFiles()"/> 
+            LeftSlant
+            <input id="LeftSlant" type="file" onchange="LSFile()"/>
+            Shrug
+            <input id="Shrug" type="file" onchange="SFile()"/>
+            Scal
+            <input id="Scal" type="file" onchange="ScFile()"/>
+            <br>Whirl
+            <input id="Whirl" type="file" onchange="WhFile()"/>
+            Symmetry
+            <input id="Symmetry" type="file" onchange="SyFile()"/>
+            Translation
+            <input id="Translation" type="file" onchange="TrFile()"/>
+            <br>
+            <canvas id="myCanvas" width="1000" height="600" style="border:1px solid #c3c3c3">your browser does not support the canvas tag </canvas>  
+              
+            <script>   
+                function TrFile(){
+                    var file=document.getElementById("Translation").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        Trdraw(number);//绘图函数调用
+                    }  
+                }
+                
+                function SyFile(){
+                    var file=document.getElementById("Symmetry").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        Sydraw(number);//绘图函数调用
+                    }  
+                }
+
+                function WhFile()
+                {
+                    var file=document.getElementById("Whirl").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        Whdraw(number);//绘图函数调用
+                    }  
+                }
+
+
+                function ScFile(){
+                    var file=document.getElementById("Scal").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        Scdraw(number);//绘图函数调用
+                    }  
+                }
+
+                function SFile(){
+                    var file=document.getElementById("Shrug").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        Sdraw(number);//绘图函数调用
+                    }  
+                }
+                function processFiles(){  
+                    var file=document.getElementById("fileInput").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        draw(number);//绘图函数调用
+                    }  
+                }
+
+                function LSFile(){
+                    var file=document.getElementById("LeftSlant").files[0];  
+                    var reader=new FileReader();  
+                    reader.readAsText(file);  
+                    reader.onload=function(e)  
+                    {  
+                        var str = this.result;//读取文本  
+                        var number = new Array();  
+                        number= digitalExtraction(str,number);//提取数字并存入数组  
+                        LSdraw(number);//绘图函数调用
+                    }  
+                }
+
+                //对称变换函数
+                function symmetrySlant(A){
+                    var LS= new Array();
+                    LS=[[1,0],[0,-1]];
+                    var C=new Array(2);
+                    for (var i=0;i<2;i++){
+                        C[i]=0;
+                        for (var j=0;j<2;j++){
+                            C[i]+=A[j]*LS[j][i];
+                        }
+                    }
+                    return C;
+                }
+
+                //旋转变换函数
+                function whirlSlant(A)
+                {
+                    var LS= new Array();
+                    LS=[[Math.cos(120),Math.sin(120)],[-Math.sin(120),Math.cos(120)]];
+                    var C=new Array(2);
+                    for (var i=0;i<2;i++){
+                        C[i]=0;
+                        for (var j=0;j<2;j++){
+                            C[i]+=A[j]*LS[j][i];
+                        }
+                    }
+                    return C;
+                }
+
+                //比例变换函数
+                function  scalSlant(A){
+                    var LS= new Array();
+                    LS=[[1.2,0],[0,1.2]];
+                    var C=new Array(2);
+                    for (var i=0;i<2;i++){
+                        C[i]=0;
+                        for (var j=0;j<2;j++){
+                            C[i]+=A[j]*LS[j][i];
+                        }
+                    }
+                    return C;
+                }
+
+                //耸肩变换函数
+                function shrugSlant(A){
+                    var LS= new Array();
+                    LS=[[1,0.2],[0.2,1]];
+                    var C=new Array(2);
+                    for (var i=0;i<2;i++){
+                        C[i]=0;
+                        for (var j=0;j<2;j++){
+                            C[i]+=A[j]*LS[j][i];
+                        }
+                    }
+                    return C;
+                }
+
+                //左斜变换函数
+                function leftSlant(A){
+                    var LS= new Array();
+                    LS=[[1,0],[0.2,1]];
+                    var C=new Array(2);
+                    for (var i=0;i<2;i++){
+                        C[i]=0;
+                        for (var j=0;j<2;j++){
+                            C[i]+=A[j]*LS[j][i];
+                        }
+                    }
+                    return C;
+                }
+
+                //提取数字，并存入数组  
+               function digitalExtraction(str,number){  
+                    var heap= str.replace(/[^0-9.L]/ig,"A");  
+  
+                    var numcharacter="";//存储数字字符  
+                    var number =new Array();//提取数字数组  
+                    var i=0;  
+                    var flag=0;//heap字符串当前标记  
+                    var n=0;//标识数字与字符转换位置  
+                    var character=heap[flag];//获取字符串的一个字符  
+                   // document.write(heap);  
+                    while(character!=null){  
+                        if(character=="L"){  
+                             number[i++]=-1;  
+                             flag+=2;  
+                             character=heap[flag];  
+                         }  
+                        if(character!="A"){  
+                            n=1;  
+                            numcharacter+=character;  
+                          }  
+                        else{  
+                            if(n){  
+                                number[i++]=parseFloat(numcharacter);  
+                                numcharacter="";  
+                                n=0;  
+                            }  
+                        }  
+                         character=heap[++flag];  
+                    }  
+                     
+                    return number;  
+               }  
+
+
+               //平移变换绘制
+               function Trdraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                     for(var i=1,j=0;i<n;i++){  
+                        if(number[i]!=-1){  
+                            x[j]=number[i]*10;  
+                            y[j]=number[++i]*10;  
+                            j++;  
+                        }else{
+                            cxt.moveTo(x[0]+800,y[0]+160);  
+                            for(var k=1;k<j;k++){  
+                                cxt.lineTo(x[k]+800,y[k]+160); 
+                            }  
+                            cxt.stroke();  
+                            j=0;  
+                        } 
+                     }
+                      for(var i=1,j=0;i<n;i++){  
+                        if(number[i]!=-1){  
+                            x[j]=number[i]*10;  
+                            y[j]=number[++i]*10;  
+                            j++;  
+                        }else{
+                            cxt.moveTo(x[0]+360,y[0]+160);  
+                            for(var k=1;k<j;k++){  
+                                cxt.lineTo(x[k]+360,y[k]+160); 
+                            }  
+                            cxt.stroke();  
+                            j=0;  
+                        }  
+                    }   
+               }
+
+               //对称变换绘制
+               function Sydraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                      for(var i=1,j=0;i<n;i++){  
+                          if(number[i]!=-1){  
+                              x[j]=number[i]*10;  
+                              y[j]=number[++i]*10;  
+                              j++;  
+                          }else{
+                              var A=[x[0],y[0]];
+                              cxt.moveTo(symmetrySlant(A)[0]+480,symmetrySlant(A)[1]+160);  
+                              for(var k=1;k<j;k++){  
+                                  var B=[x[k],y[k]];
+                                  cxt.lineTo(symmetrySlant(B)[0]+480,symmetrySlant(B)[1]+160); 
+                              }  
+                              cxt.stroke();  
+                              j=0;  
+                          }  
+                      } 
+                      for(var i=1,j=0;i<n;i++){  
+                        if(number[i]!=-1){  
+                            x[j]=number[i]*10;  
+                            y[j]=number[++i]*10;  
+                            j++;  
+                        }else{
+                            cxt.moveTo(x[0]+480,y[0]+160);  
+                            for(var k=1;k<j;k++){  
+                                cxt.lineTo(x[k]+480,y[k]+160); 
+                            }  
+                            cxt.stroke();  
+                            j=0;  
+                        }  
+                    }   
+               }
+
+               //旋转变换绘制
+               function Whdraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                      for(var i=1,j=0;i<n;i++){  
+                          if(number[i]!=-1){  
+                              x[j]=number[i]*10;  
+                              y[j]=number[++i]*10;  
+                              j++;  
+                          }else{
+                              var A=[x[0],y[0]];
+                              cxt.moveTo(whirlSlant(A)[0]+480,whirlSlant(A)[1]+160);  
+                              for(var k=1;k<j;k++){  
+                                  var B=[x[k],y[k]];
+                                  cxt.lineTo(whirlSlant(B)[0]+480,whirlSlant(B)[1]+160); 
+                              }  
+                              cxt.stroke();  
+                              j=0;  
+                          }  
+                      }  
+               }
+
+               //比例变换绘制
+               function Scdraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                      for(var i=1,j=0;i<n;i++){  
+                          if(number[i]!=-1){  
+                              x[j]=number[i]*10;  
+                              y[j]=number[++i]*10;  
+                              j++;  
+                          }else{
+                              var A=[x[0],y[0]];
+                              cxt.moveTo(scalSlant(A)[0]+480,scalSlant(A)[1]+100);  
+                              for(var k=1;k<j;k++){  
+                                  var B=[x[k],y[k]];
+                                  cxt.lineTo(scalSlant(B)[0]+480,scalSlant(B)[1]+100); 
+                              }  
+                              cxt.stroke();  
+                              j=0;  
+                          }  
+                      }  
+               }
+
+                //耸肩变换绘制
+                function Sdraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                      for(var i=1,j=0;i<n;i++){  
+                          if(number[i]!=-1){  
+                              x[j]=number[i]*10;  
+                              y[j]=number[++i]*10;  
+                              j++;  
+                          }else{
+                              var A=[x[0],y[0]];
+                              cxt.moveTo(shrugSlant(A)[0]+320,shrugSlant(A)[1]+100);  
+                              for(var k=1;k<j;k++){  
+                                  var B=[x[k],y[k]];
+                                  cxt.lineTo(shrugSlant(B)[0]+320,shrugSlant(B)[1]+100); 
+                              }  
+                              cxt.stroke();  
+                              j=0;  
+                          }  
+                      }  
+                 }  
+
+                //左斜变换绘制
+               function LSdraw(number){
+                var canvas=document.getElementById('myCanvas');  
+                      
+                      var cxt=canvas.getContext('2d');   
+                      var n= number.length;  
+                      number[n]=-1;  
+                      var n= number.length;  
+    
+                     var flag=0;  
+                     var x= new Array();  
+                     var y =new Array();  
+                     var j=0;  
+                      for(var i=1,j=0;i<n;i++){  
+                          if(number[i]!=-1){  
+                              x[j]=number[i]*10;  
+                              y[j]=number[++i]*10;  
+                              j++;  
+                          }else{
+                              var A=[x[0],y[0]];
+                              cxt.moveTo(leftSlant(A)[0]+160,leftSlant(A)[1]+100);  
+                              for(var k=1;k<j;k++){  
+                                  var B=[x[k],y[k]];
+                                  cxt.lineTo(leftSlant(B)[0]+160,leftSlant(B)[1]+100); 
+                              }  
+                              cxt.stroke();  
+                              j=0;  
+                          }  
+                      }  
+                 }  
+
+               //无变换绘制
+               function draw(number){  
+                    var canvas=document.getElementById('myCanvas');  
+                      
+                    var cxt=canvas.getContext('2d');   
+                    var n= number.length;  
+                    number[n]=-1;  
+                    var n= number.length;  
+  
+                   var flag=0;  
+                   var x= new Array();  
+                   var y =new Array();  
+                   var j=0;  
+                    for(var i=1,j=0;i<n;i++){  
+                        if(number[i]!=-1){  
+                            x[j]=number[i]*10;  
+                            y[j]=number[++i]*10;  
+                            j++;  
+                        }else{
+                            cxt.moveTo(x[0],y[0]+100);  
+                            for(var k=1;k<j;k++){  
+                                cxt.lineTo(x[k],y[k]+100); 
+                            }  
+                            cxt.stroke();  
+                            j=0;  
+                        }  
+                    }  
+               }  
+              
+            </script>     
+        </body>    
+</html> 
