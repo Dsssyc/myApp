@@ -9,7 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/74265/myApp/public/NameDisplay_Transform.html",
+            "url": "file:///C:/Users/74265/myApp/public/Map_Projections.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
