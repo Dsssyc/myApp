@@ -33,3 +33,7 @@ https://dsssyc.github.io/myApp/public/Map_Projections.html
 **_Spatial_Measure.html:_**
 ===========================
 https://dsssyc.github.io/myApp/public/Spatial_Measure.html
+***
+**_Compression.html:_**
+===========================
+https://dsssyc.github.io/myApp/public/Compression.html
