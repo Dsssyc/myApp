@@ -30,3 +30,9 @@ https://dsssyc.github.io/myApp/public/NameDisplay_Transform.html
 Map_Projections.html:
 
 https://dsssyc.github.io/myApp/public/Map_Projections.html
+
+
+Spatial_Measure.html:
+
+
+https://dsssyc.github.io/myApp/public/Spatial_Measure.html
