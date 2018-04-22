@@ -25,3 +25,8 @@ https://dsssyc.github.io/myApp/public/NameDisplay.html
 NameDisplay_Transform.html：
 
 https://dsssyc.github.io/myApp/public/NameDisplay_Transform.html
+
+
+Map_Projections.html:
+
+https://dsssyc.github.io/myApp/public/Map_Projections.html
