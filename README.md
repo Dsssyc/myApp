@@ -32,7 +32,7 @@ Map_Projections.html:
 https://dsssyc.github.io/myApp/public/Map_Projections.html
 
 
-Spatial_Measure.html:
+_Spatial_Measure.html:_
 
 
 https://dsssyc.github.io/myApp/public/Spatial_Measure.html
