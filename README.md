@@ -37,3 +37,16 @@ https://dsssyc.github.io/myApp/public/Spatial_Measure.html
 **_Compression.html:_**
 ===========================
 https://dsssyc.github.io/myApp/public/Compression.html
+***
+**_Quad_Tree.html:_**
+===========================
+https://dsssyc.github.io/myApp/public/Quad_Tree.html
+***
+**_Left_Turn.html:_**
+===========================
+https://dsssyc.github.io/myApp/public/Left_Turn.html
+***
+**_Symbolic.html:_**
+===========================
+https://dsssyc.github.io/myApp/public/Symbolic.html
+
