@@ -1,12 +1,12 @@
-**_my code:_**
+**_My code:_**
 ==============
 https://github.com/Dsssyc/myApp
 ***
-**_helloworld.html:_**
+**_Helloworld.html:_**
 ======================
 https://dsssyc.github.io/myApp/public/helloworld.html
 ***
-**_hellocanvas.html:_**
+**_Hellocanvas.html:_**
 =======================
 https://dsssyc.github.io/myApp/public/hellocanvas.html
 ***
@@ -14,7 +14,7 @@ https://dsssyc.github.io/myApp/public/hellocanvas.html
 ======================
 https://dsssyc.github.io/myApp/public/HorseRoute.html
 ***
-**_bestwork.html：_**
+**_Bestwork.html：_**
 =====================
 https://dsssyc.github.io/myApp/public/bestwork.html
 ***
