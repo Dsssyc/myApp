@@ -46,7 +46,7 @@ https://dsssyc.github.io/myApp/public/Quad_Tree.html
 ===========================
 https://dsssyc.github.io/myApp/public/Left_Turn.html
 ***
-**_Symbolic.html:_**
+**_Symbolize.html:_**
 ===========================
 https://dsssyc.github.io/myApp/public/Symbolic.html
 
