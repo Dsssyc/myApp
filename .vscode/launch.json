@@ -9,7 +9,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/Users/74265/myApp/public/Symbolic.html",
+            "url": "file:///C:/Users/74265/myApp/public/Compression.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
